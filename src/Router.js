@@ -6,6 +6,8 @@ import Login from "./components/Login/Login";
 import Menu from "./components/Menu/Menu";
 import Header from "./components/Header/Header";
 import Profile from "./components/Profile/Profile";
+import Parameters from "./components/Parameters/Parameters";
+import Messaging from "./components/Messaging/Messaging";
 
 function Router() {
 
@@ -36,6 +38,26 @@ function Router() {
               <Menu />
               <Header current_page="Mon profil"/>
               <Profile />
+            </main>
+          )}
+        />
+        <Route
+        path="/parameters"
+        render={() => (
+            <main>
+              <Menu />
+              <Header current_page="Mes paramètres"/>
+              <Parameters />
+            </main>
+          )}
+        />
+        <Route
+        path="/messaging"
+        render={() => (
+            <main>
+              <Menu />
+              <Header current_page="Ma messagerie"/>
+              <Messaging />
             </main>
           )}
         />

@@ -18,17 +18,24 @@ nav a {
 	color: #FFF;
 	font-size: 1.5rem;
 	font-weight: 200;
+	border-radius: 16px 4px;
+	padding: 8px;
+	transition: 0.3s;
 }
 
 nav a:hover {
-	color: #FFF;
+	background-color: #E9C46A;
+	color: #264653;
+	font-weight: 400;
 	text-decoration: none;
+}
+
+nav a:hover svg {
+	fill: #264653;
 }
 
 .active {
 	background-color: #E9C46A;
-	border-radius: 16px 4px;
-	padding: 8px;
 	color: #264653;
 	font-weight: 400;
 }

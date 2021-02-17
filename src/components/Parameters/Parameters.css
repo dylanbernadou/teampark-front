@@ -1,0 +1,6 @@
+.parameters form {
+	box-shadow: 0px 0px 1px #F3F3F4, 0px 1px 2px #E2E2E6; 
+	background-color: #fff;
+	border-radius: 8px;
+	border: #ddd 2px solid;
+}
