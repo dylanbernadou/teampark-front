@@ -1,0 +1,38 @@
+nav {
+	height: 100%;
+	position: fixed !important;
+	left: 0;
+	background: #264653;
+	border-radius: 0px 8px 8px 0px;
+}
+
+nav h1 {
+	color : #8D9EA5;
+}
+
+nav a svg {
+	margin-right: 1rem;
+}
+
+nav a {
+	color: #FFF;
+	font-size: 1.5rem;
+	font-weight: 200;
+}
+
+nav a:hover {
+	color: #FFF;
+	text-decoration: none;
+}
+
+.active {
+	background-color: #E9C46A;
+	border-radius: 16px 4px;
+	padding: 8px;
+	color: #264653;
+	font-weight: 400;
+}
+
+.active svg {
+	fill: #264653;
+}
