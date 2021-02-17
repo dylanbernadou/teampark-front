@@ -7,7 +7,7 @@ function Parameters() {
 	}, []);
 	
 	return (
-		<div className="parameters offset-5 col-4 pl-5">
+		<div className="parameters offset-4 col-6 pl-5">
 			<form className="d-flex flex-column p-4">
 				<h2>Modifier le mot de passe</h2>
 				<input placeholder="Ancien mot de passe" className="my-2" />

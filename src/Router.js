@@ -8,6 +8,7 @@ import Header from "./components/Header/Header";
 import Profile from "./components/Profile/Profile";
 import Parameters from "./components/Parameters/Parameters";
 import Messaging from "./components/Messaging/Messaging";
+import Drive from "./components/Drive/Drive";
 
 function Router() {
 
@@ -58,6 +59,16 @@ function Router() {
               <Menu />
               <Header current_page="Ma messagerie"/>
               <Messaging />
+            </main>
+          )}
+        />
+        <Route
+        path="/drive"
+        render={() => (
+            <main>
+              <Menu />
+              <Header current_page="Mon drive"/>
+              <Drive />
             </main>
           )}
         />

@@ -3,10 +3,12 @@ import "./Messaging.css";
 import avatar from "../../assets/images/avatars/dylan_bernadou.jpg";
 import avatar2 from "../../assets/images/avatars/tony_stark.jpg";
 import avatar3 from "../../assets/images/avatars/spider_dylan.png";
+import * as eva from 'eva-icons';
 
 function Messaging() {
 	useEffect(() => {
 	    document.title = "Messagerie - LearnPark";
+	    eva.replace();
 	}, []);
 	
 	return (
@@ -17,73 +19,73 @@ function Messaging() {
 						<div className="avatarContainer">
 							<img src={avatar} alt="user avatar" className="avatar" />
 						</div>
-						<p>Hey ! Comment vous allez ?</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar2} alt="user avatar" className="avatar" />
 						</div>
-						<p>Yo ! ça va et toi ? La forme ?</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar} alt="user avatar" className="avatar" />
 						</div>
-						<p>Tranquille tranquille, je suis un train de dev un petit projet pour l'ETNA là, c'est plutôt sympa</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar2} alt="user avatar" className="avatar" />
 						</div>
-						<p>ça m'a l'air sympa, hésite pas à partager quelques screenshot à l'occas' !</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar} alt="user avatar" className="avatar" />
 						</div>
-						<p>Ouais tkt dès que ça a un peu avancer je t'envoie ça</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar2} alt="user avatar" className="avatar" />
 						</div>
-						<p>Thanks, perso jsuis en train de bosser sur ma ptite armure oklm</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar} alt="user avatar" className="avatar" />
 						</div>
-						<p>Ah ouais lourd, tu vas pouvoir encore de la péter auprès des autres avengers</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar2} alt="user avatar" className="avatar" />
 						</div>
-						<p>Plus que ça, je vais tous leur clouer le bec, j'utilise de la nanotech cette fois c'est vraiment vener</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar} alt="user avatar" className="avatar" />
 						</div>
-						<p>Quel crack, tu me feras test hein</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar2} alt="user avatar" className="avatar" />
 						</div>
-						<p>Evidemment, je viendrais te voir avec !</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar} alt="user avatar" className="avatar" />
 						</div>
-						<p>ça c'est vraiment lourd ! Te plante pas dans l'atlantique hein</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 					<div className="rowChat">
 						<div className="avatarContainer">
 							<img src={avatar2} alt="user avatar" className="avatar" />
 						</div>
-						<p>Aucun problème, j'ai autonomie illimitée y'a aucun chance que ça arrive</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>
 				</div>
 				<div className="message_send">

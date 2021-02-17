@@ -8,7 +8,7 @@ function Login() {
 	}, []);
 
 	return (
-		<div className="loginPage h-100 d-flex">
+		<div className="loginPage d-flex">
 			<div className="col-6 h-100">
 				<form className="h-100 d-flex flex-column justify-content-center offset-2 col-8">
 					<h1>LearnPark</h1>
