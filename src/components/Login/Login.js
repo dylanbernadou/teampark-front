@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Login.css";
 import illustration from "../../assets/images/login_illustration.svg";
 
 function Login() {
+	useEffect(() => {
+	    document.title = "Login - LearnPark";
+	}, []);
+
 	return (
 		<div className="loginPage h-100 d-flex">
 			<div className="col-6 h-100">

@@ -14,11 +14,11 @@ function Router() {
       <Switch>
         <Route
         exact
-        path="/"
+        path="/homepage"
         render={() => (
             <main>
               <Menu />
-              <Header />
+              <Header current_page="Mon mur" />
               <Homepage />
             </main>
           )}
@@ -32,7 +32,11 @@ function Router() {
         <Route
         path="/profile"
         render={() => (
-            <Profile />
+            <main>
+              <Menu />
+              <Header current_page="Mon profil"/>
+              <Profile />
+            </main>
           )}
         />
       </Switch>

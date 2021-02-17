@@ -12,7 +12,7 @@ function Menu() {
 	return (
 		<nav className="col-2 d-flex flex-column px-4 py-5">
 			<h1 className="mx-auto">LearnPark</h1>
-			<NavLink className="d-flex align-items-center my-3" to="/">
+			<NavLink className="d-flex align-items-center my-3" to="/homepage">
 				<i
 		          data-eva="browser-outline"
 		          data-eva-fill="#FFF"

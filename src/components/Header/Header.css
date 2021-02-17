@@ -4,16 +4,22 @@ header {
 
 header h1 {
 	color: #264653;
+	font-weight: 300;
 }
 
-.avatarContainer {
+header p {
+	font-weight: 300;
+	color: #264653;
+}
+
+header .avatarContainer {
 	height: 60px;
 	width: 60px;
 	border-radius: 50%;
 	overflow: hidden;
 }
 
-.avatarContainer img {
+header .avatarContainer img {
 	height: 100%;
 	width: 100%;
 	object-fit: cover;

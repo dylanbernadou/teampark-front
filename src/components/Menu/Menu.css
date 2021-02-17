@@ -33,6 +33,10 @@ nav a:hover {
 	font-weight: 400;
 }
 
+.active:hover {
+	color: #264653;
+}
+
 .active svg {
 	fill: #264653;
 }

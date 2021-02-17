@@ -1,0 +1,51 @@
+.profileHeader, .profileDescription, .profileInterests, .profilePersonnality, .profileCoordonates {
+	box-shadow: 0px 0px 1px #F3F3F4, 0px 1px 2px #E2E2E6; 
+	background-color: #fff;
+	border-radius: 8px;
+	border: #ddd 2px solid;
+}
+
+.profileHeader .avatarContainer {
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: #ddd 2px solid;
+}
+
+.profileHeader .avatarContainer img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+h1, h3, h5 {
+	color: #264653;
+}
+
+ul {
+	display: flex;
+	padding: 0;
+}
+
+li {
+	margin: 3px;
+	padding: 7px;
+	list-style-type: none;
+	border-radius: 8px 16px;
+	width: auto;
+}
+
+li:nth-child(odd) {
+	background-color: #264653;
+	color: white;
+}
+
+li:nth-child(even) {
+	background-color: #E9C46A;
+	color: #264653;
+}
+
+.coordonates svg {
+	margin-right: 5px;
+}
