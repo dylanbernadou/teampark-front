@@ -1,31 +1,31 @@
-import React, { useRef, useEffect } from "react";
-import "./Homepage.css";
+import React, { useEffect } from "react";
+import "./Wall.css";
 
 
-function Homepage() {
+function Wall() {
 	useEffect(() => {
-	    document.title = "Mur - LearnPark";
+	    document.title = "Mur - TeamPark";
 	}, []);
 	
 	const stylePostIt = {
-		'background-color': '#ffffa5',
+		'backgroundColor': '#7FC4BC',
 		'transform': 'rotate(2deg)'
 	};
 
 	const stylePostIt2 = {
-		'background-color': '#bc544B',
+		'backgroundColor': '#F4A261',
 		'color': 'white',
 		'transform': 'rotate(-4deg)'
 	};
 
 	const stylePostIt3 = {
-		'background-color': '#52B2BF',
+		'backgroundColor': '#E76F51',
 		'color': 'white',
 		'transform': 'rotate(7deg)'
 	};
 
 	return (
-		<div className="homepage offset-2 col-10 pl-5 d-flex">
+		<div className="wall offset-2 col-10 pl-5 d-flex">
 			<div className="post-it col-2" style={stylePostIt}>
 				<h3>John Doe</h3>
 				<h5>Demande d'aide</h5>
@@ -51,4 +51,4 @@ function Homepage() {
 	);
 }
 
-export default Homepage;
+export default Wall;

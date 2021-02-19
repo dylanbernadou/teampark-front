@@ -7,7 +7,7 @@ import * as eva from 'eva-icons';
 
 function Messaging() {
 	useEffect(() => {
-	    document.title = "Messagerie - LearnPark";
+	    document.title = "Messagerie - TeamPark";
 	    eva.replace();
 	}, []);
 	

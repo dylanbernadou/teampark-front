@@ -3,7 +3,7 @@ import "./Drive.css";
 
 function Drive() {
 	useEffect(() => {
-	    document.title = "Drive - LearnPark";
+	    document.title = "Drive - TeamPark";
 	}, []);
 	
 	return (

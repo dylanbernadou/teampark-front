@@ -3,7 +3,7 @@ import "./Parameters.css";
 
 function Parameters() {
 	useEffect(() => {
-	    document.title = "Paramètres - LearnPark";
+	    document.title = "Paramètres - TeamPark";
 	}, []);
 	
 	return (

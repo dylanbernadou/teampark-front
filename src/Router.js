@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom";
+import Helper from "./Helper";
+import DAO from "./DAO";
 
-import Homepage from "./components/Homepage/Homepage";
+import Wall from "./components/Wall/Wall";
 import Login from "./components/Login/Login";
 import Menu from "./components/Menu/Menu";
 import Header from "./components/Header/Header";
@@ -11,67 +13,108 @@ import Messaging from "./components/Messaging/Messaging";
 import Drive from "./components/Drive/Drive";
 
 function Router() {
+  const [user, set_user] = useState(null);
+  const [loaded, set_loaded] = useState(false);
+
+  const api = new DAO();
+  const help = new Helper();
+  const auth_token = help.get_cookie("auth_token");
+
+  useEffect(() => {
+    if (auth_token) get_user();
+    !localStorage.user_id || (window.location.href = "/logout");
+  }, []);
+
+  const get_user = () => {
+    api.get_auth().then((data) => {
+      set_user(data);
+      set_loaded(true);
+    });
+  };
 
   return (
     <BrowserRouter>
       <Switch>
         <Route
-        exact
-        path="/homepage"
-        render={() => (
-            <main>
-              <Menu />
-              <Header current_page="Mon mur" />
-              <Homepage />
-            </main>
+          exact
+          path="/"
+          render={() =>
+            auth_token ? (
+            <Redirect to="/wall" />
+          ) : (
+            (window.location.href = "/login")
           )}
         />
         <Route
-        path="/login"
-        render={() => (
-            <Login />
-          )}
+          path="/login"
+          render={() => (
+              <Login />
+            )}
         />
         <Route
-        path="/profile"
-        render={() => (
-            <main>
-              <Menu />
-              <Header current_page="Mon profil"/>
-              <Profile />
-            </main>
-          )}
+          exact
+          path="/logout"
+          render={() => {
+            help.delete_all_cookies();
+          }}
         />
-        <Route
-        path="/parameters"
-        render={() => (
-            <main>
-              <Menu />
-              <Header current_page="Mes paramètres"/>
-              <Parameters />
-            </main>
-          )}
-        />
-        <Route
-        path="/messaging"
-        render={() => (
-            <main>
-              <Menu />
-              <Header current_page="Ma messagerie"/>
-              <Messaging />
-            </main>
-          )}
-        />
-        <Route
-        path="/drive"
-        render={() => (
-            <main>
-              <Menu />
-              <Header current_page="Mon drive"/>
-              <Drive />
-            </main>
-          )}
-        />
+        {loaded && (
+          <Switch>
+            {user.roles.includes("STUDENT") ||
+              (window.location.href = "/login")}
+              <Route
+                exact
+                path="/wall"
+                render={() => (
+                    <main>
+                      <Menu />
+                      <Header user={user} current_page="Mon mur" />
+                      <Wall />
+                    </main>
+                  )}
+                />
+                <Route
+                path="/profile"
+                render={() => (
+                    <main>
+                      <Menu />
+                      <Header user={user} current_page="Mon profil"/>
+                      <Profile />
+                    </main>
+                  )}
+                />
+                <Route
+                path="/parameters"
+                render={() => (
+                    <main>
+                      <Menu />
+                      <Header user={user} current_page="Mes paramètres"/>
+                      <Parameters />
+                    </main>
+                  )}
+                />
+                <Route
+                path="/messaging"
+                render={() => (
+                    <main>
+                      <Menu />
+                      <Header user={user} current_page="Ma messagerie"/>
+                      <Messaging />
+                    </main>
+                  )}
+                />
+                <Route
+                path="/drive"
+                render={() => (
+                    <main>
+                      <Menu />
+                      <Header user={user} current_page="Mon drive"/>
+                      <Drive />
+                    </main>
+                  )}
+                />
+          </Switch>
+        )}
       </Switch>
     </BrowserRouter>
   );

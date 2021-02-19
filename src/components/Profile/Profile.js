@@ -5,7 +5,7 @@ import * as eva from 'eva-icons';
 
 function Profile() {
 	useEffect(() => {
-	    document.title = "Profil - LearnPark";
+	    document.title = "Profil - TeamPark";
 	    eva.replace();
 	}, []);
 
