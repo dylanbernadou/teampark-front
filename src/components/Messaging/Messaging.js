@@ -91,7 +91,7 @@ function Messaging() {
 				<div className="message_send">
 					<form>
 						<input placeholder="Aa" />
-						<button>
+						<button className="sendMessageButton">
 							<i
 					          data-eva="navigation-2-outline"
 					          data-eva-fill="#fff"

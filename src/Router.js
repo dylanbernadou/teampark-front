@@ -79,7 +79,7 @@ function Router() {
                     <main>
                       <Menu />
                       <Header user={user} current_page="Mon profil"/>
-                      <Profile />
+                      <Profile user={user}/>
                     </main>
                   )}
                 />

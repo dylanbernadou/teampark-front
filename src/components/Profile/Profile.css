@@ -42,3 +42,28 @@ li:nth-child(even) {
 .coordonates svg {
 	margin-right: 5px;
 }
+
+.editProfileButton {
+	background-color: #264653;
+	border-radius: 16px 4px;
+	border: none;
+}
+
+.editProfileForm button {
+	background-color: #264653;
+	border: none;
+	border-radius: 16px 4px;
+	color: #fff;
+}
+
+.editProfileForm textarea {
+	border-radius: 4px;
+	padding: 8px 16px;
+	border: 2px solid #ccc;
+	box-shadow: 0px 0px 1px #F3F3F4, 0px 1px 2px #E2E2E6; 
+}
+
+.editProfileForm textarea:focus {
+	border-bottom: solid 2px #264653;
+	outline: none;
+}

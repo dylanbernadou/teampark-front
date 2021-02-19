@@ -1,0 +1,25 @@
+.logoutButton {
+	background-color: #D44E55;
+	border: none;
+	border-radius: 16px 4px;
+	color: white;
+}
+
+.confirmationButton {
+	background-color: #264653;
+	border: none;
+	color: #FFF;
+	border-radius: 16px 4px;
+	padding: 8px;
+	transition: 0.3s;
+}
+
+.confirmationButton:hover {
+	background-color: #E9C46A;
+	color: #264653;
+}
+
+.confirmationButton:active {
+	background-color: #E9C46A;
+	color: #264653;
+}

@@ -51,10 +51,8 @@ function Login() {
 	            Connexion ...
 	          </div>
 	        );
-	        console.log(data.token);
 	        help.set_cookie("auth_token", data.token);
 	        api.get_auth(data.token).then((data) => {
-	        	console.log(data);
 				window.location.href = "/wall";
 	        });
 	      })
@@ -87,7 +85,7 @@ function Login() {
 					<input onChange={handleOnChange} type="email" value={email} name="email" id="inputEmail" required autoFocus placeholder="Email" className="my-3" />
 					<input onChange={handleOnChange} type="password" id="password" name="password" required placeholder="Mot de passe" className="my-3" />
 					<a href="localhost">Mot de passe oublié ?</a>
-					<button onClick={login} type="submit" className="mt-3">Se connecter</button>
+					<button onClick={login} type="submit" className="mt-3 loginButton">Se connecter</button>
 				</form>
 			</div>
 			<div className="col-6 h-100 d-flex">

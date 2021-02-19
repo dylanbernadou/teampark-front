@@ -96,3 +96,22 @@ h4 {
 .active-contact {
 	border: 3px solid #E9C46A !important;
 }
+
+.sendMessageButton {
+	background-color: #264653;
+	border: none;
+	color: #FFF;
+	border-radius: 16px 4px;
+	padding: 8px;
+	transition: 0.3s;
+}
+
+.sendMessageButton:hover {
+	background-color: #E9C46A;
+	color: #264653;
+}
+
+.sendMessageButton:active {
+	background-color: #E9C46A;
+	color: #264653;
+}

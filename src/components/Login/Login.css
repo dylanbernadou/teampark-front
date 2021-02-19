@@ -1,6 +1,7 @@
 .loginPage {
 	height: 100vh;
 }
+
 form h1 {
 	color: #8D9EA5;
 	font-size: 72px;
@@ -9,7 +10,7 @@ form h1 {
 form input {
 	border-radius: 4px;
 	padding: 8px 16px;
-	border: none;
+	border: 2px solid #ccc;
 	box-shadow: 0px 0px 1px #F3F3F4, 0px 1px 2px #E2E2E6; 
 }
 
@@ -24,7 +25,7 @@ form a {
 	line-height: 25px;
 }
 
-form button {
+.loginButton {
 	background-color: #264653;
 	border: none;
 	color: #FFF;
@@ -33,12 +34,12 @@ form button {
 	transition: 0.3s;
 }
 
-form button:hover {
+.loginButton:hover {
 	background-color: #E9C46A;
 	color: #264653;
 }
 
-form button:active {
+.loginButton:active {
 	background-color: #E9C46A;
 	color: #264653;
 }
