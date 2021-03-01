@@ -12,6 +12,10 @@ import Parameters from "./components/Parameters/Parameters";
 import Messaging from "./components/Messaging/Messaging";
 import Drive from "./components/Drive/Drive";
 
+import SchoolDashboard from "./components/SchoolDashboard/SchoolDashboard";
+import SchoolStudents from "./components/SchoolStudents/SchoolStudents";
+import SchoolPromotions from "./components/SchoolPromotions/SchoolPromotions";
+
 function Router() {
   const [user, set_user] = useState(null);
   const [loaded, set_loaded] = useState(false);
@@ -69,7 +73,7 @@ function Router() {
                     <main>
                       <Menu />
                       <Header user={user} current_page="Mon mur" />
-                      <Wall />
+                      <Wall user={user} />
                     </main>
                   )}
                 />
@@ -110,6 +114,36 @@ function Router() {
                       <Menu />
                       <Header user={user} current_page="Mon drive"/>
                       <Drive />
+                    </main>
+                  )}
+                />
+                <Route
+                path="/dashboard"
+                render={() => (
+                    <main>
+                      <Menu />
+                      <Header user={user} current_page="Tableau de bord"/>
+                      <SchoolDashboard />
+                    </main>
+                  )}
+                />
+                <Route
+                path="/promotions"
+                render={() => (
+                    <main>
+                      <Menu />
+                      <Header user={user} current_page="Liste des promotions"/>
+                      <SchoolPromotions />
+                    </main>
+                  )}
+                />
+                <Route
+                path="/students"
+                render={() => (
+                    <main>
+                      <Menu />
+                      <Header user={user} current_page="Liste des étudiants"/>
+                      <SchoolStudents />
                     </main>
                   )}
                 />

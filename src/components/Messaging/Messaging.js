@@ -4,11 +4,20 @@ import avatar from "../../assets/images/avatars/dylan_bernadou.jpg";
 import avatar2 from "../../assets/images/avatars/tony_stark.jpg";
 import avatar3 from "../../assets/images/avatars/spider_dylan.png";
 import * as eva from 'eva-icons';
+import CreateChannel from "./CreateChannel";
 
 function Messaging() {
 	useEffect(() => {
 	    document.title = "Messagerie - TeamPark";
 	    eva.replace();
+
+	    /*const url = new URL('http://localhost:3001/.well-known/mercure');
+		url.searchParams.append('topic', 'https://localhost:8000/api/messages/{id}');
+		const eventSource = new EventSource(url);
+
+		eventSource.onmessage = event => {
+		    console.log(JSON.parse(event.data));
+		}*/
 	}, []);
 	
 	return (
@@ -103,14 +112,15 @@ function Messaging() {
 				</div>
 			</div>
 			<div className="col-1 contacts">
-				<h4>Contacts</h4>
+				<h4>Channels</h4>
 				<div className="avatarContainer active-contact">
 					<img src={avatar2} alt="user avatar" className="avatar" />
 				</div>
 				<div className="avatarContainer">
 					<img src={avatar3} alt="user avatar" className="avatar" />
 				</div>
-
+				<CreateChannel />
+				<button data-toggle="modal" data-target={"#createChannel"} type="button" data-dismiss="modal" className="addChannelButton">+</button>
 			</div>
 		</div>
 	);

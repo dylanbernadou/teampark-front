@@ -37,4 +37,12 @@ export default class DAO {
 	    });
 	    return rep;
 	}
+
+	async postPostIt(data) {
+	    let rep = {};
+	    await this.axios.post("post_its", data).then((response) => {
+	      rep = response.data;
+	    });
+	    return rep;
+	}
 }

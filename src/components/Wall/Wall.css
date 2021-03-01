@@ -11,7 +11,7 @@
 	align-items: center;
 }
 
-.post-it button {
+.post-it button, .createPostItForm button {
 	background-color: #264653;
 	border: none;
 	color: #FFF;
@@ -20,7 +20,22 @@
 	transition: 0.3s;
 }
 
-.post-it button:hover {
+.post-it button:hover, .createPostItForm button:hover {
 	background-color: #E9C46A;
 	color: #264653;
+}
+
+.postItsContainer {
+	height: 80vh;
+	overflow: scroll;
+}
+
+.addPostItButton {
+	border:none;
+	border-radius: 50%;
+	height: 45px;
+	width: 45px;
+	font-size: 20px;
+	color:#fff;
+	background-color: #264653;
 }

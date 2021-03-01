@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "./Profile.css";
 
 function EditProfile(props) {
-	const [input_phone, set_input_phone] = useState("");
+	const [input_phone, set_input_phone] = useState(props.user.phone ? props.user.phone : "");
 	const [input_interests, set_input_interests] = useState("");
 	const [input_personality, set_input_personality] = useState("");
-	const [input_description, set_input_description] = useState("");
+	const [input_description, set_input_description] = useState(props.user.description ? props.user.description : "");
 
 	const handleOnChange = (e) => {
 	    eval("set_" + [e.target.name] + '("' + e.target.value + '");');

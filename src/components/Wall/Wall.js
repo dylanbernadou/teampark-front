@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import "./Wall.css";
+import CreatePostIt from "./CreatePostIt";
+import "bootstrap";
+import $ from "jquery";
 
-
-function Wall() {
+function Wall(props) {
 	useEffect(() => {
+		console.log(props);
 	    document.title = "Mur - TeamPark";
 	}, []);
 	
@@ -25,27 +28,33 @@ function Wall() {
 	};
 
 	return (
-		<div className="wall offset-2 col-10 pl-5 d-flex">
-			<div className="post-it col-2" style={stylePostIt}>
-				<h3>John Doe</h3>
-				<h5>Demande d'aide</h5>
-				<p>Comment gérer les communications client-serveur svp ?</p>
-				<button>Aider</button>
-			</div>
-			<div className="post-it col-2" style={stylePostIt2}>
-				<h3>ETNA</h3>
-				<h5>Soutenance</h5>
-				<p>Bonjour à vous !<br /><br />Vos soutenances pour le PLI aurons lieu le 5 mars. Les heures précises vous seront communiquer par mail une semaine plus tôt.</p>
-				<button>Vu</button>
-			</div>
-			<div className="post-it col-2" style={stylePostIt3}>
-				<h3>Mr. Jacob</h3>
-				<h5>Suivis</h5>
-				<p>Bonjour, seriez-vous disponible ce jeudi pour un suivi pédagogique ?</p>
-				<div className="d-flex justify-content-between col-10 offset-1">
-					<button>Oui</button>
-					<button>Non</button>
+		<div className="wall offset-2 col-10 pl-5">
+			<div className="postItsContainer d-flex">
+				<div className="post-it col-2" style={stylePostIt}>
+					<h3>John Doe</h3>
+					<h5>Demande d'aide</h5>
+					<p>Comment gérer les communications client-serveur svp ?</p>
+					<button>Aider</button>
 				</div>
+				<div className="post-it col-2" style={stylePostIt2}>
+					<h3>ETNA</h3>
+					<h5>Soutenance</h5>
+					<p>Bonjour à vous !<br /><br />Vos soutenances pour le PLI aurons lieu le 5 mars. Les heures précises vous seront communiquer par mail une semaine plus tôt.</p>
+					<button>Vu</button>
+				</div>
+				<div className="post-it col-2" style={stylePostIt3}>
+					<h3>Mr. Jacob</h3>
+					<h5>Suivi</h5>
+					<p>Bonjour, seriez-vous disponible ce jeudi pour un suivi pédagogique ?</p>
+					<div className="d-flex justify-content-between col-10 offset-1">
+						<button>Oui</button>
+						<button>Non</button>
+					</div>
+				</div>
+			</div>
+			<CreatePostIt user={props.user} />
+			<div className="d-flex justify-content-center">
+				<button data-toggle="modal" data-target={"#createPostIt"} type="button" data-dismiss="modal" className="addPostItButton">+</button>
 			</div>
 		</div>
 	);
