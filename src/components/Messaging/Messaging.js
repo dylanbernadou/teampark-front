@@ -1,16 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Messaging.css";
 import avatar from "../../assets/images/avatars/dylan_bernadou.jpg";
 import avatar2 from "../../assets/images/avatars/tony_stark.jpg";
 import avatar3 from "../../assets/images/avatars/spider_dylan.png";
 import * as eva from 'eva-icons';
 import CreateChannel from "./CreateChannel";
+import DAO from "../../DAO";
 
-function Messaging() {
+function Messaging(props) {
+	const api = new DAO();
+	const [channels, set_channels] = useState([]);
+	const [current_channel, set_current_channel] = useState({});
+	const [messages, set_messages] = useState([]);
+	const [input_message, set_input_message] = useState("");
+	const [partner, set_partner] = useState({});
+
 	useEffect(() => {
 	    document.title = "Messagerie - TeamPark";
 	    eva.replace();
-
+	    getChannels();
 	    /*const url = new URL('http://localhost:3001/.well-known/mercure');
 		url.searchParams.append('topic', 'https://localhost:8000/api/messages/{id}');
 		const eventSource = new EventSource(url);
@@ -19,88 +27,81 @@ function Messaging() {
 		    console.log(JSON.parse(event.data));
 		}*/
 	}, []);
+
+	const handleOnChange = (e) => {
+	    eval("set_" + [e.target.name] + '("' + e.target.value + '");');
+	};
+
+	const changeChannel = (id) => {
+		let curr_chann = channels.find(e => e.id === id);
+		set_current_channel(curr_chann);
+		getMessagesForCurrentChannel(id);
+		getInfoOnConversationPartner(curr_chann);
+	}
+
+	const getChannels = () => {
+		api.getChannels().then((response) => {
+			let list_of_channels = response.filter(channel => channel.users.includes("/api/users/" + props.user.id));
+			set_channels(list_of_channels);
+			set_current_channel(list_of_channels[0]);
+			getMessagesForCurrentChannel(list_of_channels[0].id);
+			getInfoOnConversationPartner(list_of_channels[0]);
+	    })
+	}
 	
+	const getMessagesForCurrentChannel = (id = null) => {
+		let channel_id = id ? id : current_channel.id;
+		api.getMessagesByChannel(channel_id).then((response) => {
+			set_messages(response);
+		})
+	}
+
+	const getInfoOnConversationPartner = (chann) => {
+		let partner_id = chann.users?.filter(user => user.split('/')[3] != props.user.id)[0].split('/')[3];
+
+		api.getUser(partner_id).then((response) => {
+			set_partner(response);
+		})
+	}
+
+	const sendMessage = async(e) => {
+		e.preventDefault();
+
+		let data = {
+			content: input_message,
+			user: "/api/users/" + props.user.id,
+			channel: "/api/channels/" + current_channel.id
+		}
+
+		api.postMessage(data).then((response) => {
+			console.log(response);
+			getMessagesForCurrentChannel();
+		})
+	}
+
 	return (
 		<div className="messaging offset-2 col-10 pl-5 d-flex">
 			<div className="chat col-11">
+				<h2>Conversation avec {partner.firstname} {partner.lastname} </h2>
 				<div className="messages">
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar2} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar2} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar2} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar2} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar2} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div className="rowChat">
-						<div className="avatarContainer">
-							<img src={avatar2} alt="user avatar" className="avatar" />
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
+					{
+						messages.map((message) => {
+							return (
+								<div className="rowChat">
+									<div className="avatarContainer">
+										<img src={avatar} alt="user avatar" className="avatar" />
+									</div>
+									<p>{message.content}</p>
+								</div>
+							)
+						})
+					}
+
 				</div>
 				<div className="message_send">
 					<form>
-						<input placeholder="Aa" />
-						<button className="sendMessageButton">
+						<input value={input_message} onChange={handleOnChange} name="input_message" placeholder="Aa" />
+						<button onClick={sendMessage} type="submit" className="sendMessageButton">
 							<i
 					          data-eva="navigation-2-outline"
 					          data-eva-fill="#fff"
@@ -113,13 +114,15 @@ function Messaging() {
 			</div>
 			<div className="col-1 contacts">
 				<h4>Channels</h4>
-				<div className="avatarContainer active-contact">
-					<img src={avatar2} alt="user avatar" className="avatar" />
-				</div>
-				<div className="avatarContainer">
-					<img src={avatar3} alt="user avatar" className="avatar" />
-				</div>
-				<CreateChannel />
+				{
+					channels.map((channel) => {
+						return (
+							<button onClick={() => changeChannel(channel.id)} className="avatarContainer active-contact">{channel.id}</button>
+						)
+					})
+				}
+				
+				<CreateChannel user={props.user} update={getChannels} />
 				<button data-toggle="modal" data-target={"#createChannel"} type="button" data-dismiss="modal" className="addChannelButton">+</button>
 			</div>
 		</div>

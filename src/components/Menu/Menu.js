@@ -29,15 +29,7 @@ function Menu() {
 		        />
 		        Messagerie
 			</NavLink>
-			<NavLink className="d-flex align-items-center my-3" to="/drive">
-				<i
-		          data-eva="save-outline"
-		          data-eva-fill="#FFF"
-		          data-eva-height="2rem"
-	          	  data-eva-width="2rem"
-		        />
-		        Drive
-			</NavLink>
+			
 			<NavLink className="d-flex align-items-center my-3" to="/profile">
 				<i
 		          data-eva="person-outline"

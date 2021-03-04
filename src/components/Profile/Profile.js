@@ -1,16 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import avatar from "../../assets/images/avatars/dylan_bernadou.jpg";
 import * as eva from 'eva-icons';
 import EditProfile from "./EditProfile";
 import "bootstrap";
 import $ from "jquery";
+import DAO from "../../DAO";
 
 function Profile(props) {
+	const [user, set_user] = useState(props.user);
+
+	const api = new DAO();
+
 	useEffect(() => {
 	    document.title = "Profil - TeamPark";
 	    eva.replace();
 	}, []);
+
+	const updateProfil = async() => {
+		await api.getUsers(props.user.id).then((response) => {
+			set_user(response);
+		})
+	}
 
 	return (
 		<div className="profile offset-4 col-6 pb-5">
@@ -19,9 +30,8 @@ function Profile(props) {
 					<img src={avatar} alt="Avatar de l'utilisateur" className="avatar" />
 				</div>
 				<div className="d-flex flex-column justify-content-center ml-5">
-					<h1>{props.user.firstname} {props.user.lastname}</h1>
-					<h3>Promotion "{props.user.promotion.name}"</h3>
-					<h3>Profil MBTI : {props.user.mbti ? props.user.mbti : "Non renseigné"}</h3>
+					<h1>{user.firstname} {user.lastname}</h1>
+					<h3>Profil MBTI : {user.mbti ? user.mbti : "Non renseigné"}</h3>
 				</div>
 				<div className="ml-auto">
 					<button data-toggle="modal" data-target={"#editProfile"} type="button" data-dismiss="modal" className="editProfileButton p-1">
@@ -32,21 +42,21 @@ function Profile(props) {
 			          	  data-eva-width="2rem"
 				        />
 			        </button>
-			        <EditProfile user={props.user} />
+			        <EditProfile user={user} update={updateProfil} />
 				</div>
 			</div>
 			<hr />
 			<div className="profileDescription my-3 p-3">
 				<h3>Description</h3>
-				<p>{props.user.description ? props.user.description : "Non renseigné"}</p>
+				<p>{user.description ? user.description : "Non renseigné"}</p>
 			</div>
 			<hr />
 			<div className="profileInterests my-3 p-3">
 				<h3>Centres d'intérêts</h3>
 				{
-					props.user.interests.length ?
+					user.interests.length ?
 					<ul className="mt-3">
-						{props.user.interests.map((interest, i) => {
+						{user.interests.map((interest, i) => {
 							return(<li>{interest}</li>)
 						})}
 					</ul>
@@ -57,9 +67,9 @@ function Profile(props) {
 			<div className="profilePersonnality my-3 p-3">
 				<h3>Personnalitée</h3>
 				{
-					props.user.personality.length ?
+					user.personality.length ?
 					<ul className="mt-3">
-						{props.user.personality.map((personalityTrait, i) => {
+						{user.personality.map((personalityTrait, i) => {
 							return(<li>{personalityTrait}</li>)
 						})}
 					</ul>
@@ -87,7 +97,7 @@ function Profile(props) {
 			          data-eva-height="1.5rem"
 		          	  data-eva-width="1.5rem"
 			        />
-					{props.user.phone ? props.user.phone : "Non renseigné"}
+					{user.phone ? user.phone : "Non renseigné"}
 				</p>
 			</div>
 		</div>

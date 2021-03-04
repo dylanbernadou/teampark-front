@@ -103,7 +103,7 @@ function Router() {
                     <main>
                       <Menu />
                       <Header user={user} current_page="Ma messagerie"/>
-                      <Messaging />
+                      <Messaging user={user} />
                     </main>
                   )}
                 />

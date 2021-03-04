@@ -3,7 +3,7 @@ import "./Wall.css";
 import DAO from "../../DAO";
 
 function CreatePostIt(props) {
-	const [category, set_category] = useState("help");
+	const [category, set_category] = useState("Demande d'aide");
 	const [message, set_message] = useState(null);
 	const api = new DAO();
 
@@ -18,13 +18,11 @@ function CreatePostIt(props) {
 			category: category,
 			message: message,
 			user: "https://localhost:8000/api/users/" + props.user.id,
-			school: "https://localhost:8000/api/schools/" + props.user.school.id
+			/*school: "https://localhost:8000/api/schools/" + props.user.school.id*/
 		};
 
-		console.log(data);
-
 		await api.postPostIt(JSON.stringify(data)).then((data) => {
-			console.log(data);
+			props.update();
 		})
 	}
 
@@ -54,21 +52,21 @@ function CreatePostIt(props) {
 	          			<label>Categorie du post-it</label>
           				<select value={category} onChange={handleOnChange} name="category">
           					<optgroup label="Post-it pour les co-promos">
-          						<option value="help">Demande d'aide</option>
-          						<option value="event">Proposer un évenement</option>
+          						<option value="Demande d'aide">Demande d'aide</option>
+          						<option value="Proposer un évenement">Proposer un évenement</option>
           					</optgroup>
           					<optgroup label="Post-it pour l'école">
-          						<option value="info">Demande d'information</option>
-          						<option value="appointment">Demander un rendez-vous pédagogique</option>
+          						<option value="Demande d'information">Demande d'information</option>
+          						<option value="Demander un rendez-vous pédagogique">Demander un rendez-vous pédagogique</option>
           					</optgroup>
           					<optgroup label="Post-it pour les administrateurs du site">
-          						<option value="feedback">Donner un feedback sur la plateforme</option>
-          						<option value="report">Signaler un bug</option>
+          						<option value="Donner un feedback sur la plateforme">Donner un feedback sur la plateforme</option>
+          						<option value="Signaler un bug">Signaler un bug</option>
           					</optgroup>
           				</select>
           				<label className="mt-3">Message</label>
           				<textarea placeholder="Saisissez votre message ici" value={message} onChange={handleOnChange} name="message"></textarea>
-          				<button onClick={CreatePostIt} type="submit" className="p-2 mt-5">Enregistrer</button>
+          				<button onClick={CreatePostIt} type="submit" className="p-2 mt-5" data-dismiss="modal" aria-label="Close">Enregistrer</button>
 		          	</div>
 		       </form>
 		    </div>
