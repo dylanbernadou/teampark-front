@@ -19,8 +19,6 @@ function Wall(props) {
 		let postItsArray = [];
 		await api.getPostIts().then((postits) => {
 			postits.map(postit => {
-				if (Number(postit.user.split("/")[3]) === props.user.id)
-					postItsArray.push(postit);
 				if (postit.school?.split("/")[3] === props.user.school.split("/")[3])
 					postItsArray.push(postit);
 				if (postit.promotion?.split("/")[3] === props.user.promotion.split("/")[3])

@@ -24,7 +24,7 @@
 	padding: 10px;
 }
 
-.rowChat:nth-child(odd) {
+.rowRight {
 	flex-direction: row-reverse;
 }
 
@@ -37,13 +37,13 @@
 	max-width: 55%;
 }
 
-.rowChat:nth-child(odd) p {
+.rowLeft p {
 	background-color: #264653;
 	color: #fff;
 	border-radius: 16px 4px;
 }
 
-.rowChat:nth-child(even) p {
+.rowRight p {
 	background-color: #E9C46A;
 	border-radius: 4px 16px;
 }
@@ -67,10 +67,11 @@ h4 {
 
 .contacts {
 	height: 85vh;
-	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding-right: 50px;
 }
 
 .contacts .avatarContainer {

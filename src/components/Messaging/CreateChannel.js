@@ -5,34 +5,60 @@ import DAO from "../../DAO";
 function CreateChannel(props) {
 	const [users, set_users] = useState([]);
 	const [user_select, set_user_select] = useState("");
+	const [channel_name, set_channel_name] = useState(null);
+
 	const api = new DAO();
 
 	useEffect(() => {
-	    getOptionsUsers();
+	    getAllPartners();
 	}, []);
 
 	const handleOnChange = (e) => {
 	    eval("set_" + [e.target.name] + '("' + e.target.value + '");');
 	};
 
-	const getOptionsUsers = async () => {
+	const getAllPartners = async () => {
+		let list_of_channels = props.channels;
+		let list_of_parteners_id = [];
+
+		list_of_channels.forEach(function(chann) {
+			let partner_id = chann.users?.filter(user => user.split('/')[3] != props.user.id)[0].split('/')[3];
+			if (!list_of_parteners_id.includes(partner_id)) {
+				list_of_parteners_id.push(Number(partner_id));
+			}
+		})
+
+		getOptionsUsers(list_of_parteners_id)
+	}
+
+	const getOptionsUsers = async (partners) => {
 		await api.getAllUsers().then((response) => {
-			let list = response.filter(res => res.id != props.user.id);
-			set_users(list);
+			let optionsUsers = [];
+			response.forEach(function(user) {
+				if (!(user.id === props.user.id || partners.includes(user.id)))
+					optionsUsers.push(user);
+			})
+			set_users(optionsUsers);
+			set_user_select(optionsUsers[0]);
 		})
 	}
 
 	const createChannel = async(e) => {
 		e.preventDefault();
 
+		if (!channel_name)
+			return;
+
+		let temp = [];
+		temp.push("/api/users/2");
+		temp.push("/api/users/3");
 		let data = {
-			users: [
-				"/api/users/2",
-				"/api/users/3"
-			]
+			users: temp,
+			name: channel_name
 		}
 
 		await api.postChannels(data).then((response) => {
+			set_channel_name("");
 			props.update();
 		})
 	}
@@ -60,6 +86,8 @@ function CreateChannel(props) {
 			            </button>
 	          	</div>
 	          	<div className="modal-body d-flex flex-column editProfileForm">
+	          		<label className="mt-3">Nom du salon</label>
+	          		<input value={channel_name} onChange={handleOnChange} name="channel_name" placeholder="ex: Groupe de math"/>
           			<label className="mt-3">Choisissez l'utilisateur à ajouter au channel :</label>
           			<select value={user_select} onChange={handleOnChange} name="user_select">
           				{

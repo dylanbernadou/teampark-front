@@ -6,11 +6,12 @@ import avatar3 from "../../assets/images/avatars/spider_dylan.png";
 import * as eva from 'eva-icons';
 import CreateChannel from "./CreateChannel";
 import DAO from "../../DAO";
+import moment from 'moment';
 
 function Messaging(props) {
 	const api = new DAO();
 	const [channels, set_channels] = useState([]);
-	const [current_channel, set_current_channel] = useState({});
+	const [current_channel, set_current_channel] = useState(null);
 	const [messages, set_messages] = useState([]);
 	const [input_message, set_input_message] = useState("");
 	const [partner, set_partner] = useState({});
@@ -42,7 +43,11 @@ function Messaging(props) {
 	const getChannels = () => {
 		api.getChannels().then((response) => {
 			let list_of_channels = response.filter(channel => channel.users.includes("/api/users/" + props.user.id));
-			set_channels(list_of_channels);
+			set_channels(list_of_channels.reverse());
+			if (list_of_channels.length === 0){
+				set_current_channel(null);
+				return;
+			}
 			set_current_channel(list_of_channels[0]);
 			getMessagesForCurrentChannel(list_of_channels[0].id);
 			getInfoOnConversationPartner(list_of_channels[0]);
@@ -74,22 +79,46 @@ function Messaging(props) {
 		}
 
 		api.postMessage(data).then((response) => {
-			console.log(response);
+			set_input_message("");
 			getMessagesForCurrentChannel();
+		})
+	}
+
+	const deleteChannel = async () => {
+		await api.deleteChannel(current_channel.id).then((response) => {
+			getChannels();
 		})
 	}
 
 	return (
 		<div className="messaging offset-2 col-10 pl-5 d-flex">
+			<div className="col-1 contacts">
+				<h4>Channels</h4>
+				{
+					channels.map((channel) => {
+						return (
+							<button onClick={() => changeChannel(channel.id)} className="avatarContainer active-contact">{channel.name}</button>
+						)
+					})
+				}
+				
+				<CreateChannel user={props.user} update={getChannels} channels={channels} />
+				<button data-toggle="modal" data-target={"#createChannel"} type="button" data-dismiss="modal" className="addChannelButton">+</button>
+			</div>
+		{
+			current_channel ?
 			<div className="chat col-11">
-				<h2>Conversation avec {partner.firstname} {partner.lastname} </h2>
+				<div className=" pl-5 row">
+					<h2>{current_channel.name} avec {partner.firstname} {partner.lastname} </h2>
+					<button onClick={deleteChannel} className="ml-5 sendMessageButton">Supprimer la conversation</button>
+				</div>
 				<div className="messages">
 					{
 						messages.map((message) => {
 							return (
-								<div className="rowChat">
+								<div className={ message.user.split('/')[3] === props.user.id ? "rowLeft rowChat" : "rowChat rowRight" }>
 									<div className="avatarContainer">
-										<img src={avatar} alt="user avatar" className="avatar" />
+										<img title={moment(message.datetime).format('DD MMM, YYYY à HH:mm') } src={avatar} alt="user avatar" className="avatar" />
 									</div>
 									<p>{message.content}</p>
 								</div>
@@ -112,19 +141,9 @@ function Messaging(props) {
 					</form>
 				</div>
 			</div>
-			<div className="col-1 contacts">
-				<h4>Channels</h4>
-				{
-					channels.map((channel) => {
-						return (
-							<button onClick={() => changeChannel(channel.id)} className="avatarContainer active-contact">{channel.id}</button>
-						)
-					})
-				}
-				
-				<CreateChannel user={props.user} update={getChannels} />
-				<button data-toggle="modal" data-target={"#createChannel"} type="button" data-dismiss="modal" className="addChannelButton">+</button>
-			</div>
+			: ''
+
+		}
 		</div>
 	);
 }

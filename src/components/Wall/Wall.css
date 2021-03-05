@@ -43,5 +43,6 @@
 	width: 45px;
 	font-size: 20px;
 	color:#fff;
+	position: fixed;
 	background-color: #264653;
 }

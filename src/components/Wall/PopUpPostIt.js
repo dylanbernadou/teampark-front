@@ -1,45 +1,18 @@
-import React, { useState } from "react";
-import "./Wall.css";
-import DAO from "../../DAO";
 
-function CreatePostIt(props) {
-	const [category, set_category] = useState("Demande d'aide");
-	const [message, set_message] = useState(null);
-	
-	const api = new DAO();
-
-	const handleOnChange = (e) => {
-	    eval("set_" + [e.target.name] + '("' + e.target.value + '");');
-	};
-
-	const CreatePostIt = async(e) => {
-		e.preventDefault();
-
-		const data = {
-			category: category,
-			message: message,
-			user: "https://localhost:8000/api/users/" + props.user.id,
-			promotion: props.user.promotion
-		};
-
-		await api.postPostIt(JSON.stringify(data)).then((data) => {
-			props.update();
-		})
-	}
-
-	return(
+function PopUpPostIt(props) {
+	return (
 		<div
-	      className="modal fade createPostIt"
-	      id={"createPostIt"}
+	      className="modal fade popUpPostIt"
+	      id={"popUpPostIt"}
 	      tabIndex="-1"
 	      role="dialog"
-	      aria-labelledby="createPostIt"
+	      aria-labelledby="popUpPostIt"
 	      aria-hidden="true"
 	    >
 		    <div className="modal-dialog modal-dialog-centered" role="document">
 		        <form className="modal-content">
 		        	<div className="modal-header">
-	            		<h5 className="modal-title" id="exampleModalLongTitle">Ajouter un post-it</h5>
+	            		<h5 className="modal-title" id="exampleModalLongTitle">Répondre</h5>
 				            <button
 				              type="button"
 				              className="close"
@@ -51,7 +24,7 @@ function CreatePostIt(props) {
 		          	</div>
 		          	<div className="modal-body d-flex flex-column createPostItForm">
 	          			<label>Categorie du post-it</label>
-          				<select value={category} onChange={handleOnChange} name="category">
+          				<select name="category">
           					<optgroup label="Post-it pour les co-promos">
           						<option value="Demande d'aide">Demande d'aide</option>
           						<option value="Proposer un évenement">Proposer un évenement</option>
@@ -66,13 +39,13 @@ function CreatePostIt(props) {
           					</optgroup>
           				</select>
           				<label className="mt-3">Message</label>
-          				<textarea placeholder="Saisissez votre message ici" value={message} onChange={handleOnChange} name="message"></textarea>
-          				<button onClick={CreatePostIt} type="submit" className="p-2 mt-5" data-dismiss="modal" aria-label="Close">Enregistrer</button>
+          				<textarea placeholder="Saisissez votre message ici" name="message"></textarea>
+          				<button type="submit" className="p-2 mt-5" data-dismiss="modal" aria-label="Close">Enregistrer</button>
 		          	</div>
 		       </form>
 		    </div>
 		</div>
-	);
+	)
 }
 
-export default CreatePostIt
+export default PopUpPostIt

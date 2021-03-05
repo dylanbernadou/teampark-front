@@ -34,6 +34,8 @@ function Login() {
 	      password: password,
 	    };
 
+	    console.log(data);
+
 	    await api
 	    .login(JSON.stringify(data))
 	    .then((data) => {
@@ -51,6 +53,7 @@ function Login() {
 	            Connexion ...
 	          </div>
 	        );
+	        console.log(data.token);
 	        help.set_cookie("auth_token", data.token);
 	        api.get_auth(data.token).then((data) => {
 				window.location.href = "/wall";

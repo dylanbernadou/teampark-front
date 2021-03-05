@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import DAO from "../../DAO";
 import "./Wall.css";
+import PopUpPostIt from "./PopUpPostIt";
+import "bootstrap";
+import $ from "jquery";
 
 function PostIt(props) {
 	const api = new DAO();
@@ -13,7 +16,7 @@ function PostIt(props) {
 	}, []);
 
 	const getAuthorInformation = async() => {
-		await api.getUsers(props.postit.user.split("/")[3]).then((response) => {
+		await api.getUser(props.postit.user.split("/")[3]).then((response) => {
 			set_author(response);
 		})
 	}
@@ -71,7 +74,6 @@ function PostIt(props) {
 			<h3>{author.firstname} {author.lastname}</h3>
 			<h5>{props.postit.category}</h5>
 			<p>{props.postit.message}</p>
-			<button>Aider</button>
 		</div>
 	);
 }

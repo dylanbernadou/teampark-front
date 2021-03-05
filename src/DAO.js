@@ -62,6 +62,14 @@ export default class DAO {
 		return rep;
 	}
 
+	async deleteChannel(id) {
+		let rep = {};
+		await this.axios.delete("channels/" + id).then((response) => {
+			rep = response.data;
+		})
+		return rep;
+	}
+
 	async get_auth() {
 	    let rep = {};
 	    await this.axios.get("get_auth/").then((response) => {

@@ -18,7 +18,8 @@ function Profile(props) {
 	}, []);
 
 	const updateProfil = async() => {
-		await api.getUsers(props.user.id).then((response) => {
+		await api.getUser(props.user.id).then((response) => {
+			console.log(response);
 			set_user(response);
 		})
 	}
